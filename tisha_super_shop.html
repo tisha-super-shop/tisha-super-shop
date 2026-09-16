@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tisha Super Shop | Cosmetics</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--pink:#e83e8c;--dark:#25202a;--light:#fff7fb;--gold:#d89b3c}
+body{font-family:Arial,sans-serif;background:var(--light);color:var(--dark)}
+header{background:linear-gradient(135deg,#f8b5d4,#e83e8c);color:white;padding:18px 6%;position:sticky;top:0;z-index:10;box-shadow:0 3px 15px #0002}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{font-size:24px;font-weight:800}.logo span{font-size:13px;display:block;opacity:.9}
+nav a{color:white;text-decoration:none;margin-left:18px;font-weight:bold}
+.hero{padding:70px 6%;display:flex;align-items:center;justify-content:space-between;gap:30px;max-width:1200px;margin:auto}
+.hero h1{font-size:48px;line-height:1.05}.hero h1 span{color:var(--pink)}
+.hero p{margin:18px 0;color:#665d66;font-size:18px;max-width:560px}
+.btn{display:inline-block;background:var(--pink);color:white;text-decoration:none;padding:13px 22px;border-radius:25px;font-weight:bold;border:0;cursor:pointer}
+.hero-card{background:white;border-radius:30px;padding:40px;font-size:90px;box-shadow:0 15px 40px #e83e8c22}
+section{padding:45px 6%;max-width:1200px;margin:auto}
+.title{text-align:center;margin-bottom:28px}.title h2{font-size:32px}.title p{color:#777;margin-top:7px}
+.search{width:100%;padding:14px 18px;border:1px solid #ead5df;border-radius:25px;margin-bottom:25px;outline:none}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 8px 25px #0000000d;border:1px solid #f0dce5}
+.pic{height:170px;background:linear-gradient(135deg,#ffe1ed,#fff);display:flex;align-items:center;justify-content:center;font-size:70px}
+.info{padding:16px}.info h3{margin-bottom:8px}.price{color:var(--pink);font-weight:800;font-size:19px;margin-bottom:13px}
+.contact{background:white;border-radius:25px;padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:25px;box-shadow:0 8px 25px #0000000d}
+.contact-item{padding:20px;background:#fff7fb;border-radius:16px}.contact-item h3{margin-bottom:8px}.contact-item a{color:var(--pink);text-decoration:none;font-weight:bold}
+footer{text-align:center;padding:28px;background:#25202a;color:white;margin-top:35px}
+@media(max-width:800px){nav{display:none}.hero{padding-top:45px;flex-direction:column;text-align:center}.hero h1{font-size:38px}.hero-card{font-size:65px}.products{grid-template-columns:repeat(2,1fr)}.contact{grid-template-columns:1fr}}
+@media(max-width:430px){.products{grid-template-columns:1fr}.pic{height:150px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">Tisha Super Shop<span>Beauty • Care • Confidence</span></div>
+    <nav><a href="#home">Home</a><a href="#products">Products</a><a href="#contact">Contact</a></nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div>
+    <h1>Beauty that feels <span>beautiful.</span></h1>
+    <p>Welcome to Tisha Super Shop — your friendly destination for cosmetics, skincare and beauty essentials.</p>
+    <a class="btn" href="#products">Shop Products</a>
+  </div>
+  <div class="hero-card">💄✨</div>
+</section>
+
+<section id="products">
+  <div class="title"><h2>Our Products</h2><p>Choose your favourite beauty essentials</p></div>
+  <input class="search" id="search" placeholder="🔎 Search products...">
+  <div class="products" id="productList"></div>
+</section>
+
+<section id="contact">
+  <div class="title"><h2>Contact Us</h2><p>We'd love to hear from you</p></div>
+  <div class="contact">
+    <div class="contact-item"><h3>📞 Phone</h3><a href="tel:+8801000000000">+880 1000-000000</a></div>
+    <div class="contact-item"><h3>💬 WhatsApp</h3><a href="https://wa.me/8801000000000">Chat on WhatsApp</a></div>
+    <div class="contact-item"><h3>📍 Address</h3><p>Khulna, Bangladesh</p></div>
+    <div class="contact-item"><h3>🕘 Opening Hours</h3><p>Every day • 9:00 AM – 9:00 PM</p></div>
+  </div>
+</section>
+</main>
+
+<footer>© 2026 Tisha Super Shop • All Rights Reserved</footer>
+
+<script>
+const products=[
+ {name:"Lipstick",price:"৳350",icon:"💄"},
+ {name:"Face Cream",price:"৳450",icon:"🧴"},
+ {name:"Perfume",price:"৳750",icon:"🌸"},
+ {name:"Mascara",price:"৳300",icon:"🖤"},
+ {name:"Face Wash",price:"৳280",icon:"🫧"},
+ {name:"Lip Gloss",price:"৳320",icon:"💋"},
+ {name:"Sunscreen",price:"৳550",icon:"☀️"},
+ {name:"Beauty Powder",price:"৳400",icon:"✨"}
+];
+const list=document.getElementById("productList");
+function render(items){
+ list.innerHTML=items.map(p=>`<div class="card"><div class="pic">${p.icon}</div><div class="info"><h3>${p.name}</h3><div class="price">${p.price}</div><a class="btn" href="#contact">Order Now</a></div></div>`).join("");
+}
+render(products);
+document.getElementById("search").addEventListener("input",e=>{
+ const q=e.target.value.toLowerCase();
+ render(products.filter(p=>p.name.toLowerCase().includes(q)));
+});
+</script>
+</body>
+</html>
