@@ -7,9 +7,7 @@
 <title>Tisha Super Shop | Cosmetics</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -25,15 +23,8 @@ header{
   padding:30px 15px;
 }
 
-header h1{
-  margin:0;
-  font-size:34px;
-}
-
-header p{
-  margin:8px 0 0;
-  font-size:17px;
-}
+header h1{margin:0;font-size:34px}
+header p{margin:8px 0 0;font-size:17px}
 
 nav{
   background:white;
@@ -91,13 +82,9 @@ nav button{
   box-shadow:0 4px 15px #e8c8d8;
 }
 
-.pic{
-  font-size:55px;
-}
+.pic{font-size:55px}
 
-.card h3{
-  margin:10px 0 5px;
-}
+.card h3{margin:10px 0 5px}
 
 .price{
   color:#e62d80;
@@ -116,13 +103,9 @@ button{
   cursor:pointer;
 }
 
-button:hover{
-  opacity:.9;
-}
+button:hover{opacity:.9}
 
-section{
-  margin:30px 0;
-}
+section{margin:30px 0}
 
 .contact{
   background:white;
@@ -151,15 +134,13 @@ footer{
 
 .box{
   background:white;
-  max-width:500px;
+  max-width:600px;
   margin:30px auto;
   padding:24px;
   border-radius:20px;
 }
 
-.box h2{
-  color:#e62d80;
-}
+.box h2{color:#e62d80}
 
 .box input,
 .box textarea,
@@ -185,14 +166,35 @@ footer{
   font-size:18px;
 }
 
+/* SUCCESS */
+
+.success{
+  text-align:center;
+  padding:25px;
+}
+
+.success-icon{
+  font-size:65px;
+}
+
+/* ADMIN */
+
 .admin-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
   background:#fff5fa;
-  padding:10px;
-  margin:8px 0;
-  border-radius:10px;
+  padding:15px;
+  margin:12px 0;
+  border-radius:12px;
+  border-left:5px solid #ff4f9a;
+}
+
+.admin-item p{
+  margin:6px 0;
+}
+
+.status{
+  padding:9px;
+  border-radius:9px;
+  margin-top:10px;
 }
 
 .delete{
@@ -200,7 +202,25 @@ footer{
   padding:7px 12px;
 }
 
+.logout{
+  background:#555;
+  width:100%;
+  margin-top:15px;
+}
+
+.empty{
+  text-align:center;
+  padding:25px;
+  color:#777;
+}
+
+.order-id{
+  color:#7b2cff;
+  font-weight:bold;
+}
+
 @media(max-width:600px){
+
   header h1{
     font-size:28px;
   }
@@ -252,16 +272,11 @@ oninput="searchProducts()"
 
 </section>
 
-
 <section id="contact">
 
 <div class="contact">
 
 <h2>📞 Contact Us</h2>
-
-<p>📱 Phone: +880 1725-307148</p>
-
-<p>💬 WhatsApp: 01725307148</p>
 
 <p>📍 Address: Khulna, Bangladesh</p>
 
@@ -273,11 +288,8 @@ oninput="searchProducts()"
 
 </div>
 
-
 <footer>
-
 © 2026 Tisha Super Shop • All Rights Reserved 💗
-
 </footer>
 
 
@@ -299,7 +311,6 @@ type="text"
 placeholder="নাম লিখুন"
 >
 
-
 <label>ফোন নম্বর</label>
 
 <input
@@ -307,7 +318,6 @@ id="phone"
 type="tel"
 placeholder="01XXXXXXXXX"
 >
-
 
 <label>ঠিকানা</label>
 
@@ -317,7 +327,6 @@ rows="3"
 placeholder="সম্পূর্ণ ঠিকানা লিখুন"
 ></textarea>
 
-
 <label>Product</label>
 
 <input
@@ -325,7 +334,6 @@ id="product"
 type="text"
 readonly
 >
-
 
 <label>Quantity</label>
 
@@ -337,21 +345,45 @@ value="1"
 oninput="updateTotal()"
 >
 
-
 <p class="total">
 মোট: ৳<span id="total">0</span>
 </p>
 
-
 <button
-onclick="sendOrder()"
+onclick="submitOrder()"
 style="width:100%"
 >
-💬 WhatsApp-এ Order পাঠান
+✅ Submit Order
 </button>
 
 </div>
+</div>
 
+
+<!-- SUCCESS MODAL -->
+
+<div class="modal" id="successModal">
+
+<div class="box success">
+
+<button class="close" onclick="closeSuccess()">✕</button>
+
+<div class="success-icon">✅</div>
+
+<h2>Order Successful!</h2>
+
+<p>আপনার order সফলভাবে গ্রহণ করা হয়েছে।</p>
+
+<p>
+Order ID:
+<strong id="successOrderId"></strong>
+</p>
+
+<button onclick="closeSuccess()">
+Done
+</button>
+
+</div>
 </div>
 
 
@@ -387,7 +419,6 @@ Login
 <p id="adminMsg"></p>
 
 </div>
-
 </div>
 
 
@@ -400,6 +431,12 @@ Login
 <button class="close" onclick="closeAdmin()">✕</button>
 
 <h2>⚙️ Admin Panel</h2>
+
+<hr>
+
+<h3>📦 New Orders</h3>
+
+<div id="adminOrders"></div>
 
 <hr>
 
@@ -436,8 +473,14 @@ style="width:100%"
 
 <div id="adminProducts"></div>
 
-</div>
+<button
+class="logout"
+onclick="logoutAdmin()"
+>
+🚪 Logout
+</button>
 
+</div>
 </div>
 
 
@@ -469,18 +512,15 @@ let products = [
 
 
 /* =========================
-   LOCAL STORAGE
+   LOAD PRODUCTS
 ========================= */
 
 let savedProducts =
 localStorage.getItem("tishaProducts");
 
 if(savedProducts){
-
-  products = JSON.parse(savedProducts);
-
+  products=JSON.parse(savedProducts);
 }
-
 
 function saveProducts(){
 
@@ -493,7 +533,27 @@ function saveProducts(){
 
 
 /* =========================
-   SHOW PRODUCTS
+   ORDERS
+========================= */
+
+let orders =
+JSON.parse(
+  localStorage.getItem("tishaOrders") || "[]"
+);
+
+
+function saveOrders(){
+
+  localStorage.setItem(
+    "tishaOrders",
+    JSON.stringify(orders)
+  );
+
+}
+
+
+/* =========================
+   PRODUCT DISPLAY
 ========================= */
 
 function renderProducts(list=products){
@@ -503,14 +563,12 @@ function renderProducts(list=products){
 
   area.innerHTML="";
 
-
   list.forEach((p,index)=>{
 
     const card =
     document.createElement("div");
 
     card.className="card";
-
 
     card.innerHTML=`
 
@@ -519,17 +577,16 @@ function renderProducts(list=products){
       <h3>${p[1]}</h3>
 
       <div class="price">
-        ৳${p[2]}
+      ৳${p[2]}
       </div>
 
       <button
-      onclick="openOrder('${p[1]}',${p[2]})"
+      onclick="openOrder(${index})"
       >
       Order Now 🛒
       </button>
 
     `;
-
 
     area.appendChild(card);
 
@@ -550,12 +607,10 @@ function searchProducts(){
   .value
   .toLowerCase();
 
-
   const result =
   products.filter(p =>
     p[1].toLowerCase().includes(q)
   );
-
 
   renderProducts(result);
 
@@ -569,98 +624,72 @@ function searchProducts(){
 let selectedPrice=0;
 
 
-function openOrder(product,price){
+function openOrder(index){
 
-  selectedPrice=price;
+  const p=products[index];
 
+  selectedPrice=p[2];
 
-  document
-  .getElementById("product")
-  .value=product;
+  document.getElementById("product").value=p[1];
 
+  document.getElementById("qty").value=1;
 
-  document
-  .getElementById("qty")
-  .value=1;
+  document.getElementById("total").textContent=p[2];
 
+  document.getElementById("name").value="";
+  document.getElementById("phone").value="";
+  document.getElementById("address").value="";
 
-  document
-  .getElementById("total")
-  .textContent=price;
-
-
-  document
-  .getElementById("orderModal")
-  .style.display="block";
+  document.getElementById("orderModal").style.display="block";
 
 }
 
 
 function closeOrder(){
 
-  document
-  .getElementById("orderModal")
-  .style.display="none";
+  document.getElementById("orderModal").style.display="none";
 
 }
 
 
 function updateTotal(){
 
-  let qty =
-  Math.max(
+  let qty=Math.max(
     1,
-    Number(
-      document.getElementById("qty").value
-    ) || 1
+    Number(document.getElementById("qty").value)||1
   );
 
-
-  document
-  .getElementById("total")
-  .textContent =
-  selectedPrice * qty;
+  document.getElementById("total").textContent =
+    selectedPrice*qty;
 
 }
 
 
 /* =========================
-   SEND WHATSAPP ORDER
+   SUBMIT ORDER
 ========================= */
 
-function sendOrder(){
+function submitOrder(){
 
   const name =
-  document.getElementById("name")
-  .value.trim();
-
+  document.getElementById("name").value.trim();
 
   const phone =
-  document.getElementById("phone")
-  .value.trim();
-
+  document.getElementById("phone").value.trim();
 
   const address =
-  document.getElementById("address")
-  .value.trim();
-
+  document.getElementById("address").value.trim();
 
   const product =
-  document.getElementById("product")
-  .value;
-
+  document.getElementById("product").value;
 
   const qty =
   Math.max(
     1,
-    Number(
-      document.getElementById("qty").value
-    ) || 1
+    Number(document.getElementById("qty").value)||1
   );
 
-
-  const total =
-  selectedPrice * qty;
+  const total=selectedPrice*qty;
 
 
   if(!name || !phone || !address){
@@ -674,32 +703,59 @@ function sendOrder(){
   }
 
 
-  const message =
+  const order={
 
-`🛍️ Tisha Super Shop - New Order
+    id:
+    "TSN-"+Date.now(),
 
-👤 নাম: ${name}
+    name:name,
 
-📱 ফোন: ${phone}
+    phone:phone,
 
-📍 ঠিকানা: ${address}
+    address:address,
 
-💄 Product: ${product}
+    product:product,
 
-🔢 Quantity: ${qty}
+    quantity:qty,
 
-💰 মোট মূল্য: ৳${total}`;
+    price:selectedPrice,
+
+    total:total,
+
+    status:"Pending",
+
+    date:
+    new Date().toLocaleString("bn-BD")
+
+  };
 
 
-  const whatsappURL =
-  "https://wa.me/8801725307148?text="
-  + encodeURIComponent(message);
+  orders.unshift(order);
+
+  saveOrders();
 
 
-  window.open(
-    whatsappURL,
-    "_blank"
-  );
+  closeOrder();
+
+
+  document.getElementById("successOrderId")
+  .textContent=order.id;
+
+
+  document.getElementById("successModal")
+  .style.display="block";
+
+}
+
+
+/* =========================
+   SUCCESS
+========================= */
+
+function closeSuccess(){
+
+  document.getElementById("successModal")
+  .style.display="none";
 
 }
 
@@ -710,8 +766,7 @@ function sendOrder(){
 
 function openAdmin(){
 
-  document
-  .getElementById("adminLoginModal")
+  document.getElementById("adminLoginModal")
   .style.display="block";
 
 }
@@ -719,13 +774,10 @@ function openAdmin(){
 
 function closeAdmin(){
 
-  document
-  .getElementById("adminLoginModal")
+  document.getElementById("adminLoginModal")
   .style.display="none";
 
-
-  document
-  .getElementById("adminPanelModal")
+  document.getElementById("adminPanelModal")
   .style.display="none";
 
 }
@@ -734,39 +786,198 @@ function closeAdmin(){
 function adminLogin(){
 
   const username =
-  document.getElementById("adminUser")
-  .value;
-
+  document.getElementById("adminUser").value.trim();
 
   const password =
-  document.getElementById("adminPass")
-  .value;
+  document.getElementById("adminPass").value;
 
+
+  /*
+    TEMPORARY LOGIN
+
+    Username: admin
+    Password: 1234
+  */
 
   if(
     username==="admin" &&
     password==="1234"
   ){
 
-    document
-    .getElementById("adminLoginModal")
+    document.getElementById("adminLoginModal")
     .style.display="none";
 
-
-    document
-    .getElementById("adminPanelModal")
+    document.getElementById("adminPanelModal")
     .style.display="block";
 
+    renderOrders();
 
     renderAdminProducts();
 
+  }
 
-  }else{
+  else{
 
-    document
-    .getElementById("adminMsg")
+    document.getElementById("adminMsg")
     .textContent=
     "❌ Username অথবা Password ভুল!";
+
+  }
+
+}
+
+
+/* =========================
+   ADMIN ORDERS
+========================= */
+
+function renderOrders(){
+
+  const area =
+  document.getElementById("adminOrders");
+
+  area.innerHTML="";
+
+
+  if(orders.length===0){
+
+    area.innerHTML=
+    `<div class="empty">
+    📦 এখনো কোনো order নেই।
+    </div>`;
+
+    return;
+
+  }
+
+
+  orders.forEach((order,index)=>{
+
+    const item=
+    document.createElement("div");
+
+    item.className="admin-item";
+
+
+    item.innerHTML=`
+
+      <div>
+
+      <div class="order-id">
+      📦 ${order.id}
+      </div>
+
+      <p>
+      👤 <b>Customer:</b>
+      ${escapeHTML(order.name)}
+      </p>
+
+      <p>
+      📱 <b>Phone:</b>
+      ${escapeHTML(order.phone)}
+      </p>
+
+      <p>
+      📍 <b>Address:</b>
+      ${escapeHTML(order.address)}
+      </p>
+
+      <p>
+      💄 <b>Product:</b>
+      ${escapeHTML(order.product)}
+      </p>
+
+      <p>
+      🔢 <b>Quantity:</b>
+      ${order.quantity}
+      </p>
+
+      <p>
+      💰 <b>Total:</b>
+      ৳${order.total}
+      </p>
+
+      <p>
+      🕒 ${order.date}
+      </p>
+
+      <select
+      class="status"
+      onchange="changeStatus(${index},this.value)"
+      >
+
+      <option
+      ${order.status==="Pending"?"selected":""}
+      >
+      Pending
+      </option>
+
+      <option
+      ${order.status==="Confirmed"?"selected":""}
+      >
+      Confirmed
+      </option>
+
+      <option
+      ${order.status==="Delivered"?"selected":""}
+      >
+      Delivered
+      </option>
+
+      </select>
+
+      <br><br>
+
+      <button
+      class="delete"
+      onclick="deleteOrder(${index})"
+      >
+      🗑️ Delete Order
+      </button>
+
+      </div>
+    `;
+
+
+    area.appendChild(item);
+
+  });
+
+}
+
+
+/* =========================
+   CHANGE STATUS
+========================= */
+
+function changeStatus(index,status){
+
+  orders[index].status=status;
+
+  saveOrders();
+
+  renderOrders();
+
+}
+
+
+/* =========================
+   DELETE ORDER
+========================= */
+
+function deleteOrder(index){
+
+  if(
+    confirm(
+      "এই order টি delete করতে চান?"
+    )
+  ){
+
+    orders.splice(index,1);
+
+    saveOrders();
+
+    renderOrders();
 
   }
 
@@ -780,22 +991,17 @@ function adminLogin(){
 function addProduct(){
 
   const name =
-  document
-  .getElementById("newName")
+  document.getElementById("newName")
   .value.trim();
-
 
   const price =
   Number(
-    document
-    .getElementById("newPrice")
+    document.getElementById("newPrice")
     .value
   );
 
-
   const emoji =
-  document
-  .getElementById("newEmoji")
+  document.getElementById("newEmoji")
   .value.trim() || "💄";
 
 
@@ -824,24 +1030,51 @@ function addProduct(){
   renderAdminProducts();
 
 
-  document
-  .getElementById("newName")
-  .value="";
+  document.getElementById("newName").value="";
+  document.getElementById("newPrice").value="";
+  document.getElementById("newEmoji").value="";
+
+}
 
 
-  document
-  .getElementById("newPrice")
-  .value="";
+/* =========================
+   ADMIN PRODUCTS
+========================= */
+
+function renderAdminProducts(){
+
+  const area =
+  document.getElementById("adminProducts");
+
+  area.innerHTML="";
 
 
-  document
-  .getElementById("newEmoji")
-  .value="";
+  products.forEach((p,index)=>{
 
+    const item=
+    document.createElement("div");
 
-  alert(
-    "✅ Product successfully added!"
-  );
+    item.className="admin-item";
+
+    item.innerHTML=`
+
+      <span>
+      ${p[0]} ${escapeHTML(p[1])}
+      — ৳${p[2]}
+      </span>
+
+      <button
+      class="delete"
+      onclick="deleteProduct(${index})"
+      >
+      🗑️ Delete
+      </button>
+
+    `;
+
+    area.appendChild(item);
+
+  });
 
 }
 
@@ -872,49 +1105,31 @@ function deleteProduct(index){
 
 
 /* =========================
-   ADMIN PRODUCT LIST
+   LOGOUT
 ========================= */
 
-function renderAdminProducts(){
+function logoutAdmin(){
 
-  const area =
-  document.getElementById(
-    "adminProducts"
-  );
+  closeAdmin();
 
+  document.getElementById("adminUser").value="";
+  document.getElementById("adminPass").value="";
 
-  area.innerHTML="";
-
-
-  products.forEach((p,index)=>{
-
-    const item =
-    document.createElement("div");
+}
 
 
-    item.className="admin-item";
+/* =========================
+   SECURITY HELPER
+========================= */
 
+function escapeHTML(text){
 
-    item.innerHTML=`
-
-      <span>
-      ${p[0]} ${p[1]}
-      — ৳${p[2]}
-      </span>
-
-      <button
-      class="delete"
-      onclick="deleteProduct(${index})"
-      >
-      🗑️ Delete
-      </button>
-
-    `;
-
-
-    area.appendChild(item);
-
-  });
+  return String(text)
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
 
 }
 
