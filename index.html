@@ -3,24 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Tisha Super Shop | Cosmetics</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
   font-family:Arial,sans-serif;
   background:#fff5fa;
   color:#333;
 }
+
 header{
-  background:linear-gradient(135deg,#ff4f9a,#d63384);
+  background:linear-gradient(135deg,#ff4f9a,#ff8ac2);
   color:white;
   text-align:center;
-  padding:35px 15px;
+  padding:30px 15px;
 }
-header h1{margin:0;font-size:32px}
-header p{margin:10px 0 0}
+
+header h1{
+  margin:0;
+  font-size:34px;
+}
+
+header p{
+  margin:8px 0 0;
+  font-size:17px;
+}
 
 nav{
   background:white;
@@ -28,188 +41,177 @@ nav{
   text-align:center;
   position:sticky;
   top:0;
-  z-index:10;
-  box-shadow:0 2px 10px #ddd;
+  z-index:5;
+  box-shadow:0 2px 8px #ddd;
 }
+
 nav a{
-  color:#d63384;
-  text-decoration:none;
   margin:0 10px;
+  color:#e62d80;
+  text-decoration:none;
   font-weight:bold;
 }
 
-.hero{
-  text-align:center;
-  padding:35px 15px;
+nav button{
+  border:0;
+  background:#7b2cff;
+  color:white;
+  padding:9px 15px;
+  border-radius:20px;
+  font-weight:bold;
+  cursor:pointer;
 }
-.hero h2{
-  color:#d63384;
-  font-size:28px;
+
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:20px;
 }
 
 .search{
-  text-align:center;
-  padding:10px;
-}
-.search input{
-  width:90%;
-  max-width:500px;
+  width:100%;
   padding:14px;
-  border:2px solid #ff9bc6;
+  border:2px solid #ff9ccc;
   border-radius:25px;
-  outline:none;
+  margin-bottom:20px;
+  font-size:16px;
 }
 
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
   gap:18px;
-  padding:25px;
-  max-width:1000px;
-  margin:auto;
 }
-.product{
+
+.card{
   background:white;
-  padding:20px;
-  text-align:center;
   border-radius:18px;
-  box-shadow:0 4px 15px #ead4df;
+  padding:18px;
+  text-align:center;
+  box-shadow:0 4px 15px #e8c8d8;
 }
-.product .emoji{
-  font-size:50px;
+
+.pic{
+  font-size:55px;
 }
-.product h3{
+
+.card h3{
   margin:10px 0 5px;
-  color:#d63384;
 }
+
 .price{
+  color:#e62d80;
+  font-size:20px;
   font-weight:bold;
-  font-size:18px;
+  margin:8px;
 }
-.order{
-  display:inline-block;
-  margin-top:10px;
-  padding:9px 15px;
-  background:#d63384;
+
+button{
+  border:0;
+  background:#ff3f91;
   color:white;
-  border-radius:20px;
-  text-decoration:none;
+  padding:11px 20px;
+  border-radius:22px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  opacity:.9;
+}
+
+section{
+  margin:30px 0;
 }
 
 .contact{
-  background:#fff;
-  margin-top:20px;
-  padding:35px 20px;
-  text-align:center;
+  background:white;
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 4px 15px #e8c8d8;
 }
-.contact h2{color:#d63384}
 
 footer{
-  background:#d63384;
-  color:white;
   text-align:center;
-  padding:20px;
-}
-
-/* ADMIN */
-#adminButton{
-  position:fixed;
-  right:15px;
-  bottom:15px;
-  background:#222;
+  background:#ff4f9a;
   color:white;
-  padding:12px 17px;
-  border-radius:30px;
-  text-decoration:none;
-  z-index:1000;
+  padding:18px;
+  margin-top:30px;
 }
 
-#loginBox{
+.modal{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.7);
-  justify-content:center;
-  align-items:center;
-  z-index:2000;
+  background:#0008;
+  z-index:20;
   padding:20px;
-}
-
-.login{
-  background:white;
-  width:100%;
-  max-width:360px;
-  padding:25px;
-  border-radius:20px;
-  text-align:center;
-}
-
-.login h2{color:#d63384}
-
-.login input{
-  width:100%;
-  padding:12px;
-  margin:7px 0;
-  border:1px solid #ddd;
-  border-radius:10px;
-}
-
-.login button{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border:0;
-  border-radius:10px;
-  background:#d63384;
-  color:white;
-  font-weight:bold;
-}
-
-#adminPanel{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:#fff5fa;
-  z-index:1500;
-  padding:25px;
   overflow:auto;
 }
 
-.adminContent{
-  max-width:700px;
-  margin:auto;
+.box{
   background:white;
-  padding:25px;
+  max-width:500px;
+  margin:30px auto;
+  padding:24px;
   border-radius:20px;
 }
 
-.adminContent h2{color:#d63384}
-
-.adminContent input{
-  width:100%;
-  padding:12px;
-  margin:6px 0;
-  border:1px solid #ddd;
-  border-radius:10px;
+.box h2{
+  color:#e62d80;
 }
 
-.adminContent button{
-  padding:10px 15px;
-  border:0;
+.box input,
+.box textarea,
+.box select{
+  width:100%;
+  padding:12px;
+  margin:7px 0 12px;
+  border:1px solid #ddd;
   border-radius:10px;
-  background:#d63384;
-  color:white;
-  margin:5px;
+  font-size:16px;
 }
 
 .close{
-  background:#333!important;
+  float:right;
+  background:#eee;
+  color:#555;
+  padding:7px 12px;
 }
 
-@media(max-width:500px){
-  header h1{font-size:26px}
-  .products{padding:15px;gap:12px}
-  .product{padding:15px}
+.total{
+  font-weight:bold;
+  color:#e62d80;
+  font-size:18px;
+}
+
+.admin-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#fff5fa;
+  padding:10px;
+  margin:8px 0;
+  border-radius:10px;
+}
+
+.delete{
+  background:#e53935;
+  padding:7px 12px;
+}
+
+@media(max-width:600px){
+  header h1{
+    font-size:28px;
+  }
+
+  .container{
+    padding:14px;
+  }
+
+  nav a{
+    margin:0 5px;
+  }
 }
 </style>
 </head>
@@ -217,303 +219,711 @@ footer{
 <body>
 
 <header>
-  <h1>💄 Tisha Super Shop</h1>
-  <p>Your Beauty & Cosmetics Store</p>
+<h1>💄 Tisha Super Shop</h1>
+<p>Beauty that feels beautiful. ✨</p>
 </header>
 
 <nav>
-  <a href="#home">Home</a>
-  <a href="#products">Products</a>
-  <a href="#contact">Contact</a>
+
+<a href="#products">Products</a>
+<a href="#contact">Contact</a>
+
+<button onclick="openAdmin()">
+🔐 Admin
+</button>
+
 </nav>
 
-<section class="hero" id="home">
-  <h2>Beauty that feels beautiful ✨</h2>
-  <p>আপনার পছন্দের Cosmetics এক জায়গায়।</p>
+<div class="container">
+
+<input
+id="search"
+class="search"
+type="text"
+placeholder="🔎 Product খুঁজুন..."
+oninput="searchProducts()"
+>
+
+<section id="products">
+
+<h2>🛍️ Our Products</h2>
+
+<div class="products" id="productList"></div>
+
 </section>
 
-<div class="search">
-  <input type="text" id="search" placeholder="🔍 Product Search..." onkeyup="searchProducts()">
+
+<section id="contact">
+
+<div class="contact">
+
+<h2>📞 Contact Us</h2>
+
+<p>📱 Phone: +880 1725-307148</p>
+
+<p>💬 WhatsApp: 01725307148</p>
+
+<p>📍 Address: Khulna, Bangladesh</p>
+
+<p>🕘 Open: 9 AM – 9 PM</p>
+
 </div>
 
-<section class="products" id="products">
-
-  <div class="product">
-    <div class="emoji">💄</div>
-    <h3>Lipstick</h3>
-    <div class="price">৳350</div>
-    <a class="order" href="#contact">Order Now</a>
-  </div>
-
-  <div class="product">
-    <div class="emoji">🧴</div>
-    <h3>Face Cream</h3>
-    <div class="price">৳450</div>
-    <a class="order" href="#contact">Order Now</a>
-  </div>
-
-  <div class="product">
-    <div class="emoji">🌸</div>
-    <h3>Perfume</h3>
-    <div class="price">৳750</div>
-    <a class="order" href="#contact">Order Now</a>
-  </div>
-
-  <div class="product">
-    <div class="emoji">👁️</div>
-    <h3>Mascara</h3>
-    <div class="price">৳300</div>
-    <a class="order" href="#contact">Order Now</a>
-  </div>
-
-  <div class="product">
-    <div class="emoji">🫧</div>
-    <h3>Face Wash</h3>
-    <div class="price">৳280</div>
-    <a class="order" href="#contact">Order Now</a>
-  </div>
-
-  <div class="product">
-    <div class="emoji">💋</div>
-    <h3>Lip Gloss</h3>
-    <div class="price">৳320</div>
-    <a class="order" href="#contact">Order Now</a>
-  </div>
-
-  <div class="product">
-    <div class="emoji">☀️</div>
-    <h3>Sunscreen</h3>
-    <div class="price">৳550</div>
-    <a class="order" href="#contact">Order Now</a>
-  </div>
-
-  <div class="product">
-    <div class="emoji">✨</div>
-    <h3>Beauty Powder</h3>
-    <div class="price">৳400</div>
-    <a class="order" href="#contact">Order Now</a>
-  </div>
-
 </section>
 
-<section class="contact" id="contact">
-  <h2>📞 Contact Us</h2>
-  <p>📱 Phone: +880 1000-000000</p>
-  <p>💬 WhatsApp: +880 1000-000000</p>
-  <p>📍 Khulna, Bangladesh</p>
-  <p>🕘 Open: 9 AM – 9 PM</p>
-</section>
+</div>
+
 
 <footer>
-  © 2026 Tisha Super Shop | All Rights Reserved
+
+© 2026 Tisha Super Shop • All Rights Reserved 💗
+
 </footer>
 
-<!-- ADMIN BUTTON -->
-<a href="#" id="adminButton" onclick="openLogin()">🔐 Admin Login</a>
 
-<!-- LOGIN -->
-<div id="loginBox">
-  <div class="login">
-    <h2>🔐 Admin Login</h2>
+<!-- ORDER MODAL -->
 
-    <input id="username" type="text" placeholder="Username">
-    <input id="password" type="password" placeholder="Password">
+<div class="modal" id="orderModal">
 
-    <button onclick="login()">Login</button>
-    <button class="close" onclick="closeLogin()">Cancel</button>
+<div class="box">
 
-    <p id="error" style="color:red"></p>
-  </div>
+<button class="close" onclick="closeOrder()">✕</button>
+
+<h2>🛒 Order Form</h2>
+
+<label>আপনার নাম</label>
+
+<input
+id="name"
+type="text"
+placeholder="নাম লিখুন"
+>
+
+
+<label>ফোন নম্বর</label>
+
+<input
+id="phone"
+type="tel"
+placeholder="01XXXXXXXXX"
+>
+
+
+<label>ঠিকানা</label>
+
+<textarea
+id="address"
+rows="3"
+placeholder="সম্পূর্ণ ঠিকানা লিখুন"
+></textarea>
+
+
+<label>Product</label>
+
+<input
+id="product"
+type="text"
+readonly
+>
+
+
+<label>Quantity</label>
+
+<input
+id="qty"
+type="number"
+min="1"
+value="1"
+oninput="updateTotal()"
+>
+
+
+<p class="total">
+মোট: ৳<span id="total">0</span>
+</p>
+
+
+<button
+onclick="sendOrder()"
+style="width:100%"
+>
+💬 WhatsApp-এ Order পাঠান
+</button>
+
 </div>
+
+</div>
+
+
+<!-- ADMIN LOGIN -->
+
+<div class="modal" id="adminLoginModal">
+
+<div class="box">
+
+<button class="close" onclick="closeAdmin()">✕</button>
+
+<h2>🔐 Admin Login</h2>
+
+<input
+id="adminUser"
+type="text"
+placeholder="Username"
+>
+
+<input
+id="adminPass"
+type="password"
+placeholder="Password"
+>
+
+<button
+onclick="adminLogin()"
+style="width:100%"
+>
+Login
+</button>
+
+<p id="adminMsg"></p>
+
+</div>
+
+</div>
+
 
 <!-- ADMIN PANEL -->
-<div id="adminPanel">
-  <div class="adminContent">
 
-    <h2>👑 Tisha Super Shop Admin Panel</h2>
+<div class="modal" id="adminPanelModal">
 
-    <p>Welcome, Admin! 🎉</p>
+<div class="box">
 
-    <hr>
+<button class="close" onclick="closeAdmin()">✕</button>
 
-    <h3>➕ Add Product</h3>
+<h2>⚙️ Admin Panel</h2>
 
-    <input id="productName" placeholder="Product Name">
-    <input id="productPrice" placeholder="Price">
-    
-    <button onclick="addProduct()">Add Product</button>
+<hr>
 
-    <h3>📦 Product List</h3>
+<h3>➕ Add Product</h3>
 
-    <div id="adminProducts"></div>
+<input
+id="newName"
+type="text"
+placeholder="Product Name"
+>
 
-    <br>
+<input
+id="newPrice"
+type="number"
+placeholder="Price"
+>
 
-    <button class="close" onclick="logout()">Logout</button>
+<input
+id="newEmoji"
+type="text"
+placeholder="Emoji যেমন 💄"
+>
 
-  </div>
+<button
+onclick="addProduct()"
+style="width:100%"
+>
+➕ Add Product
+</button>
+
+<hr>
+
+<h3>🛍️ Manage Products</h3>
+
+<div id="adminProducts"></div>
+
 </div>
+
+</div>
+
 
 <script>
 
-/* SEARCH */
-function searchProducts(){
+/* =========================
+   PRODUCTS
+========================= */
 
-  let input =
-    document.getElementById("search").value.toLowerCase();
+let products = [
 
-  let products =
-    document.querySelectorAll(".product");
+["💄","Lipstick",350],
 
-  products.forEach(function(product){
+["🧴","Face Cream",450],
 
-    let name =
-      product.querySelector("h3").innerText.toLowerCase();
+["🌸","Perfume",750],
 
-    if(name.includes(input)){
-      product.style.display="";
-    }else{
-      product.style.display="none";
-    }
+["👁️","Mascara",300],
+
+["🫧","Face Wash",280],
+
+["💋","Lip Gloss",320],
+
+["☀️","Sunscreen",550],
+
+["✨","Beauty Powder",400]
+
+];
+
+
+/* =========================
+   LOCAL STORAGE
+========================= */
+
+let savedProducts =
+localStorage.getItem("tishaProducts");
+
+if(savedProducts){
+
+  products = JSON.parse(savedProducts);
+
+}
+
+
+function saveProducts(){
+
+  localStorage.setItem(
+    "tishaProducts",
+    JSON.stringify(products)
+  );
+
+}
+
+
+/* =========================
+   SHOW PRODUCTS
+========================= */
+
+function renderProducts(list=products){
+
+  const area =
+  document.getElementById("productList");
+
+  area.innerHTML="";
+
+
+  list.forEach((p,index)=>{
+
+    const card =
+    document.createElement("div");
+
+    card.className="card";
+
+
+    card.innerHTML=`
+
+      <div class="pic">${p[0]}</div>
+
+      <h3>${p[1]}</h3>
+
+      <div class="price">
+        ৳${p[2]}
+      </div>
+
+      <button
+      onclick="openOrder('${p[1]}',${p[2]})"
+      >
+      Order Now 🛒
+      </button>
+
+    `;
+
+
+    area.appendChild(card);
 
   });
+
 }
 
 
-/* LOGIN */
-function openLogin(){
-  document.getElementById("loginBox").style.display="flex";
+/* =========================
+   SEARCH
+========================= */
+
+function searchProducts(){
+
+  const q =
+  document
+  .getElementById("search")
+  .value
+  .toLowerCase();
+
+
+  const result =
+  products.filter(p =>
+    p[1].toLowerCase().includes(q)
+  );
+
+
+  renderProducts(result);
+
 }
 
-function closeLogin(){
-  document.getElementById("loginBox").style.display="none";
+
+/* =========================
+   ORDER
+========================= */
+
+let selectedPrice=0;
+
+
+function openOrder(product,price){
+
+  selectedPrice=price;
+
+
+  document
+  .getElementById("product")
+  .value=product;
+
+
+  document
+  .getElementById("qty")
+  .value=1;
+
+
+  document
+  .getElementById("total")
+  .textContent=price;
+
+
+  document
+  .getElementById("orderModal")
+  .style.display="block";
+
 }
 
-function login(){
 
-  let username =
-    document.getElementById("username").value;
+function closeOrder(){
 
-  let password =
-    document.getElementById("password").value;
+  document
+  .getElementById("orderModal")
+  .style.display="none";
 
-  /*
-    DEMO LOGIN
-    Username: admin
-    Password: 1234
-  */
+}
 
-  if(username==="admin" && password==="1234"){
 
-    document.getElementById("loginBox").style.display="none";
-    document.getElementById("adminPanel").style.display="block";
+function updateTotal(){
 
-    showAdminProducts();
+  let qty =
+  Math.max(
+    1,
+    Number(
+      document.getElementById("qty").value
+    ) || 1
+  );
+
+
+  document
+  .getElementById("total")
+  .textContent =
+  selectedPrice * qty;
+
+}
+
+
+/* =========================
+   SEND WHATSAPP ORDER
+========================= */
+
+function sendOrder(){
+
+  const name =
+  document.getElementById("name")
+  .value.trim();
+
+
+  const phone =
+  document.getElementById("phone")
+  .value.trim();
+
+
+  const address =
+  document.getElementById("address")
+  .value.trim();
+
+
+  const product =
+  document.getElementById("product")
+  .value;
+
+
+  const qty =
+  Math.max(
+    1,
+    Number(
+      document.getElementById("qty").value
+    ) || 1
+  );
+
+
+  const total =
+  selectedPrice * qty;
+
+
+  if(!name || !phone || !address){
+
+    alert(
+      "দয়া করে নাম, ফোন নম্বর ও ঠিকানা পূরণ করুন।"
+    );
+
+    return;
+
+  }
+
+
+  const message =
+
+`🛍️ Tisha Super Shop - New Order
+
+👤 নাম: ${name}
+
+📱 ফোন: ${phone}
+
+📍 ঠিকানা: ${address}
+
+💄 Product: ${product}
+
+🔢 Quantity: ${qty}
+
+💰 মোট মূল্য: ৳${total}`;
+
+
+  const whatsappURL =
+  "https://wa.me/8801725307148?text="
+  + encodeURIComponent(message);
+
+
+  window.open(
+    whatsappURL,
+    "_blank"
+  );
+
+}
+
+
+/* =========================
+   ADMIN LOGIN
+========================= */
+
+function openAdmin(){
+
+  document
+  .getElementById("adminLoginModal")
+  .style.display="block";
+
+}
+
+
+function closeAdmin(){
+
+  document
+  .getElementById("adminLoginModal")
+  .style.display="none";
+
+
+  document
+  .getElementById("adminPanelModal")
+  .style.display="none";
+
+}
+
+
+function adminLogin(){
+
+  const username =
+  document.getElementById("adminUser")
+  .value;
+
+
+  const password =
+  document.getElementById("adminPass")
+  .value;
+
+
+  if(
+    username==="admin" &&
+    password==="1234"
+  ){
+
+    document
+    .getElementById("adminLoginModal")
+    .style.display="none";
+
+
+    document
+    .getElementById("adminPanelModal")
+    .style.display="block";
+
+
+    renderAdminProducts();
+
 
   }else{
 
-    document.getElementById("error").innerText =
-      "❌ Username অথবা Password ভুল!";
+    document
+    .getElementById("adminMsg")
+    .textContent=
+    "❌ Username অথবা Password ভুল!";
 
   }
+
 }
 
 
-/* ADD PRODUCT */
+/* =========================
+   ADD PRODUCT
+========================= */
+
 function addProduct(){
 
-  let name =
-    document.getElementById("productName").value;
+  const name =
+  document
+  .getElementById("newName")
+  .value.trim();
 
-  let price =
-    document.getElementById("productPrice").value;
 
-  if(name==="" || price===""){
-    alert("Product Name এবং Price দিন!");
+  const price =
+  Number(
+    document
+    .getElementById("newPrice")
+    .value
+  );
+
+
+  const emoji =
+  document
+  .getElementById("newEmoji")
+  .value.trim() || "💄";
+
+
+  if(!name || !price){
+
+    alert(
+      "Product name এবং price দিন।"
+    );
+
     return;
+
   }
 
-  let products =
-    JSON.parse(localStorage.getItem("tishaProducts") || "[]");
 
-  products.push({
-    name:name,
-    price:price
-  });
+  products.push([
+    emoji,
+    name,
+    price
+  ]);
 
-  localStorage.setItem(
-    "tishaProducts",
-    JSON.stringify(products)
+
+  saveProducts();
+
+  renderProducts();
+
+  renderAdminProducts();
+
+
+  document
+  .getElementById("newName")
+  .value="";
+
+
+  document
+  .getElementById("newPrice")
+  .value="";
+
+
+  document
+  .getElementById("newEmoji")
+  .value="";
+
+
+  alert(
+    "✅ Product successfully added!"
   );
 
-  document.getElementById("productName").value="";
-  document.getElementById("productPrice").value="";
-
-  showAdminProducts();
-
-  alert("✅ Product Added!");
-
 }
 
 
-/* SHOW ADMIN PRODUCTS */
-function showAdminProducts(){
+/* =========================
+   DELETE PRODUCT
+========================= */
 
-  let products =
-    JSON.parse(localStorage.getItem("tishaProducts") || "[]");
-
-  let box =
-    document.getElementById("adminProducts");
-
-  box.innerHTML="";
-
-  products.forEach(function(product,index){
-
-    box.innerHTML += `
-      <div style="
-        background:#fff5fa;
-        padding:12px;
-        margin:8px 0;
-        border-radius:10px;
-      ">
-        <b>${product.name}</b>
-        — ৳${product.price}
-
-        <button onclick="deleteProduct(${index})">
-          Delete
-        </button>
-      </div>
-    `;
-
-  });
-
-}
-
-
-/* DELETE */
 function deleteProduct(index){
 
-  let products =
-    JSON.parse(localStorage.getItem("tishaProducts") || "[]");
+  if(
+    confirm(
+      "এই product টি delete করতে চান?"
+    )
+  ){
 
-  products.splice(index,1);
+    products.splice(index,1);
 
-  localStorage.setItem(
-    "tishaProducts",
-    JSON.stringify(products)
+    saveProducts();
+
+    renderProducts();
+
+    renderAdminProducts();
+
+  }
+
+}
+
+
+/* =========================
+   ADMIN PRODUCT LIST
+========================= */
+
+function renderAdminProducts(){
+
+  const area =
+  document.getElementById(
+    "adminProducts"
   );
 
-  showAdminProducts();
+
+  area.innerHTML="";
+
+
+  products.forEach((p,index)=>{
+
+    const item =
+    document.createElement("div");
+
+
+    item.className="admin-item";
+
+
+    item.innerHTML=`
+
+      <span>
+      ${p[0]} ${p[1]}
+      — ৳${p[2]}
+      </span>
+
+      <button
+      class="delete"
+      onclick="deleteProduct(${index})"
+      >
+      🗑️ Delete
+      </button>
+
+    `;
+
+
+    area.appendChild(item);
+
+  });
 
 }
 
 
-/* LOGOUT */
-function logout(){
+/* =========================
+   START
+========================= */
 
-  document.getElementById("adminPanel").style.display="none";
-
-}
+renderProducts();
 
 </script>
 
